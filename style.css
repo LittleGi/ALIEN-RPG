@@ -175,21 +175,26 @@ th, td {
 /* 响应式设计 */
 @media(max-width:768px){
     .main{
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         height: auto;
+        max-width: 100vw;
+        overflow-x: hidden;
     }
     .nav{
-        width: 100%;
+        width: 25%;
         height: auto;
         max-height: 40vh;
         overflow-y: auto;
-        border-bottom: 1px solid #2a5c2a;
+        border-bottom: none;
+        border-right: 1px solid #2a5ca;
     }
     .content{
-        width: 100%;
+        width: 75%;
         height: auto;
         overflow-y: auto;
-        padding: 1rem !important;
+        padding: 1.5rem;
+        box-sizing: border-box;
     }
     .nav a{
         padding: 12px 16px;
