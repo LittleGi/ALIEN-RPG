@@ -172,61 +172,99 @@ th, td {
     text-align: left;
 }
 
-/* 移动端样式 - 简化版 */
+/* === 移动端样式 (max-width: 1024px) === */
 @media screen and (max-width: 1024px) {
+    /* 1. 基础调整，防止横向滚动 */
     body, html {
         overflow-x: hidden;
-    }
-    
-    .main {
-        display: flex;
-        flex-direction: row;
         position: relative;
-        width: 100%;
+        height: 100%;
     }
-    
-    /* 导航切换按钮 - 始终显示 */
+
+    /* 2. 标题栏样式：使用flex布局使标题和按钮左右分布 */
+    .header {
+        display: flex;
+        justify-content: space-between; /* 标题居左，按钮居右 */
+        align-items: center;
+        padding: 0 1rem; /* 添加左右内边距 */
+        position: relative; /* 为按钮定位提供参考 */
+        z-index: 1002; /* 确保标题栏在悬浮导航层之上 */
+        background-color: #0a1f0a; /* 保持背景色 */
+    }
+
+    /* 3. 导航按钮样式：始终显示在标题栏右侧 */
     .nav-toggle-btn {
-        display: block !important;
-        position: fixed;
-        top: 10px;
-        left: 10px;
+        display: block !important; /* 强制显示 */
         background: #0a1f0a;
         color: #ccfffa;
         border: 1px solid #2a5c2a;
-        padding: 10px 15px;
-        z-index: 1000;
+        padding: 8px 12px;
         cursor: pointer;
         font-family: 'YeZiGongChangYunShiHei-2';
+        font-size: 1rem;
+        border-radius: 4px;
+        z-index: 1003;
     }
-    
-    /* 默认状态下隐藏导航栏 */
+    /* 按钮悬停反馈 */
+    .nav-toggle-btn:hover {
+        background-color: #1a3f1a;
+    }
+
+    /* 4. 隐藏复选框控制器 */
+    #nav-toggle {
+        display: none;
+    }
+
+    /* 5. 主内容区调整：恢复为单栏，占满宽度 */
+    .main {
+        display: block; /* 改为块级布局，取消flex左右分栏 */
+        width: 100%;
+        position: relative;
+    }
+
+    /* 6. 导航目录样式：默认隐藏，悬浮覆盖 */
     .nav {
-        position: fixed;
-        left: -100%;
+        position: fixed; /* 固定定位，覆盖在页面上 */
         top: 0;
-        width: 70%;
+        left: -100%; /* 默认完全隐藏在屏幕左侧 */
+        width: 80%; /* 展开时占据屏幕80%的宽度，可根据需要调整 */
+        max-width: 300px; /* 最大宽度，防止在大屏手机上过宽 */
         height: 100vh;
-        background: #0a1f0a;
-        z-index: 999;
-        transition: left 0.3s ease;
+        background-color: #0a1f0a;
+        z-index: 1001; /* 位于标题栏之下，内容之上 */
         overflow-y: auto;
+        padding: 1rem;
+        box-shadow: 3px 0 15px rgba(0, 0, 0, 0.5);
+        transition: left 0.3s ease-in-out; /* 平滑滑入动画 */
     }
-    
-    /* 复选框选中时显示导航栏 */
-    #nav-toggle:checked ~ .nav {
+
+    /* 7. 当复选框被选中时（按钮被点击），导航栏滑入 */
+    #nav-toggle:checked ~ .main .nav {
         left: 0;
     }
-    
-    /* 内容区域 */
+
+    /* 8. 为正文区域添加一个半透明的遮罩层（可选，增强视觉焦点） */
+    .nav-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+    /* 当导航展开时显示遮罩 */
+    #nav-toggle:checked ~ .nav-overlay {
+        display: block;
+    }
+
+    /* 9. 调整正文区域，使其在导航展开时不被推挤 */
     .content {
         width: 100%;
         padding: 1rem;
-        transition: margin-left 0.3s ease;
         box-sizing: border-box;
-    }
-    
-    #nav-toggle:checked ~ .content {
-        margin-left: 70%;
+        position: relative;
+        z-index: 1; /* 确保在导航和遮罩层之下 */
     }
 }
