@@ -174,11 +174,12 @@ th, td {
 
 /* === 移动端样式 (max-width: 1024px) === */
 @media screen and (max-width: 1024px) {
-    /* 1. 基础调整，防止横向滚动 */
+     /* 1. 基础调整，防止横向滚动 */
     body, html {
-        overflow-x: hidden;
+        overflow-x: hidden; /* 只禁止横向滚动 */
+        /* 移除 height: 100%; 或改为 min-height: 100%; 以获得更好的滚动支持 */
+        min-height: 100%;
         position: relative;
-        height: 100%;
     }
 
     /* 2. 标题栏样式：使用flex布局使标题和按钮左右分布 */
@@ -259,12 +260,15 @@ th, td {
         display: block;
     }
 
-    /* 9. 调整正文区域，使其在导航展开时不被推挤 */
+    /* 9. 调整正文区域，确保可以滚动 */
     .content {
         width: 100%;
         padding: 1rem;
         box-sizing: border-box;
         position: relative;
-        z-index: 1; /* 确保在导航和遮罩层之下 */
+        z-index: 1;
+        overflow-y: auto; /* ✅ 关键：添加此属性以允许垂直滚动 */
+        -webkit-overflow-scrolling: touch; /* 可选：为iOS设备增加滚动弹性 */
+        height: calc(100vh - 60px - 40px); /* 可选优化：计算高度（视口高 - 标题高 - 页脚高） */
     }
 }
