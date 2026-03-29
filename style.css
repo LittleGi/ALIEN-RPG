@@ -252,6 +252,7 @@ th, td {
         padding-top: 90px; /* 关键修改：增加顶部内边距，值为标题栏高度 + 一些间距（例如 60px + 20px） */
         box-shadow: 3px 0 15px rgba(0, 0, 0, 0.5);
         transition: left 0.3s ease-in-out; /* 平滑滑入动画 */
+        overflow-y: auto; /* ✅ 关键：添加此属性以允许垂直滚动 */
     }
 
     /* 7. 当复选框被选中时（按钮被点击），导航栏滑入 */
