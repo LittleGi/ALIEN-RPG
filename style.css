@@ -201,7 +201,7 @@ th, td {
         top: 0; /* 紧贴视口顶部 */
         left: 0; /* 从左侧开始 */
         width: 100%; /* 占满整个视口宽度 */
-        height: 60px; /* 建议设置一个明确的高度，方便计算 */
+        height: 75px; /* 建议设置一个明确的高度，方便计算 */
         z-index: 1002; /* 确保标题栏在悬浮导航层之上 */
         background-color: #0a1f0a; /* 保持背景色 */
         box-sizing: border-box; /* 确保内边距不增加总宽度 */
