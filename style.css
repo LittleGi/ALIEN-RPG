@@ -226,6 +226,7 @@ th, td {
         opacity: 0;
         transition: opacity 0.2s ease;
         white-space: nowrap; /* 防止导航文字在窄宽度下换行 */
+        overflow: hidden;
     }
     #nav-toggle:checked ~ .nav h1,
     #nav-toggle:checked ~ .nav ul {
@@ -251,7 +252,7 @@ th, td {
         padding:10px 0;
     }
     .footer-content{
-        flex-wrap: warp;
+        flex-wrap: wrap;
         justify-content: center;
         font-size: 0.7rem;
     }
