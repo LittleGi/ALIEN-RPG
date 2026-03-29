@@ -183,8 +183,7 @@ th, td {
     }
     .nav{
         width: 25%;
-        height: auto;
-        max-height: 40vh;
+        max-height: 80vh;
         overflow-y: auto;
         border-bottom: none;
         border-right: 1px solid #2a5ca;
