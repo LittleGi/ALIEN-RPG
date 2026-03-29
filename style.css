@@ -172,88 +172,61 @@ th, td {
     text-align: left;
 }
 
-/* 响应式设计 */
-@media(max-width:768px){
-    #nav-toggle{
-        display:none;
+/* 移动端样式 - 简化版 */
+@media screen and (max-width: 1024px) {
+    body, html {
+        overflow-x: hidden;
     }
-    .nav-toggle-btn {
-        display: block;
-        position: sticky;
-        top: 0;
-        left: 0;
-        z-index: 101;
-        background-color: #0a1f0a;
-        color: #ccfffa;
-        padding: 10px 15px;
-        border-bottom: 1px solid #2a5c2a;
-        border-right: 1px solid #2a5c2a;
-        font-family: 'YeZiGongChangYunShiHei-2';
-        cursor: pointer;
-        text-align: center;
-    }
-    .main{
-        flex-direction: row;
+    
+    .main {
         display: flex;
-        height: calc(100vh-100px);
-    }
-    .header {
-        height: 60px; /* 固定标题高度 */
-        font-size: 1.2rem; /* 调整字体大小 */
-        padding: 15px 0; /* 调整内边距 */
-    }
-    .nav{
-        position: fixed;
-        top: 60px; /* 位于标题下方 */
-        left: 0;
-        bottom: 40px; /* 位于页脚上方 */
-        width: 0; /* 默认宽度为0，即收起 */
-        padding: 0;
-        margin: 0;
-        background-color: #0a1f0a;
-        overflow-y: auto;
-        z-index: 100;
-        transition: width 0.3s ease; /* 添加宽度变化的过渡动画 */
-        border-right: none; /* 初始状态无边框 */
-    }
-    /* 当复选框被选中时（展开状态），导航栏的样式 */
-    #nav-toggle:checked ~ .nav {
-        width: 70%; /* 展开时的宽度，可根据需要调整（如 60%, 70%） */
-        border-right: 1px solid #2a5c2a;
-    }
-    .nav h1,
-    .nav ul{
-        opacity: 0;
-        transition: opacity 0.2s ease;
-        white-space: nowrap; /* 防止导航文字在窄宽度下换行 */
-        overflow: hidden;
-    }
-    #nav-toggle:checked ~ .nav h1,
-    #nav-toggle:checked ~ .nav ul {
-        opacity: 1;
-    }
-    .nav a{
-        padding:10px 5px;
-        text-align:left;
-        display:block;
-    }
-    .content{
+        flex-direction: row;
+        position: relative;
         width: 100%;
-        margin-left: 0;
-        transition: margin-left 0.3s ease; /* 添加过渡动画 */
+    }
+    
+    /* 导航切换按钮 - 始终显示 */
+    .nav-toggle-btn {
+        display: block !important;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        background: #0a1f0a;
+        color: #ccfffa;
+        border: 1px solid #2a5c2a;
+        padding: 10px 15px;
+        z-index: 1000;
+        cursor: pointer;
+        font-family: 'YeZiGongChangYunShiHei-2';
+    }
+    
+    /* 默认状态下隐藏导航栏 */
+    .nav {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        width: 70%;
+        height: 100vh;
+        background: #0a1f0a;
+        z-index: 999;
+        transition: left 0.3s ease;
+        overflow-y: auto;
+    }
+    
+    /* 复选框选中时显示导航栏 */
+    #nav-toggle:checked ~ .nav {
+        left: 0;
+    }
+    
+    /* 内容区域 */
+    .content {
+        width: 100%;
+        padding: 1rem;
+        transition: margin-left 0.3s ease;
         box-sizing: border-box;
     }
-     /* 当导航栏展开时，为正文区域添加左侧外边距，防止被导航栏遮挡 */
+    
     #nav-toggle:checked ~ .content {
-        margin-left: 70%; /* 与导航栏展开宽度一致 */
-    }
-    .footer{
-        height:40px;
-        padding:10px 0;
-    }
-    .footer-content{
-        flex-wrap: wrap;
-        justify-content: center;
-        font-size: 0.7rem;
+        margin-left: 70%;
     }
 }
