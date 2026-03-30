@@ -553,3 +553,51 @@ th, td {
     justify-content: center;
     height: 100%;
 }
+/* 修复“投掷压力反应”流程图中运算符在手机端不显示的问题 */
+/* 1. 确保运算符有基础样式，能在任何屏幕下显示 */
+.operator {
+    display: inline-block !important; /* 强制显示 */
+    background-color: #ffffff;
+    border: 3px solid #2a5c2a;
+    border-radius: 10px;
+    padding: 10px 15px;
+    text-align: center;
+    color: #2a5c2a;
+    font-size: 24px;
+    font-weight: bold;
+    min-width: 50px;
+    box-shadow: 0 3px 8px rgba(42, 92, 42, 0.15);
+    font-family: 'LXGW WenKai', '霞鹜文楷', 'Noto Serif SC', serif;
+    box-sizing: border-box;
+    margin: 0 10px; /* 水平间距 */
+    vertical-align: middle; /* 与流程框垂直对齐 */
+}
+
+/* 2. 针对手机竖屏（小屏幕）的特殊优化 */
+@media screen and (max-width: 768px) {
+    /* 2.1 首先，确保包含运算符的流程行在竖屏时正确换行 */
+    .flowchart-row {
+        flex-wrap: wrap !important; /* 允许内容换行 */
+        justify-content: center !important;
+        gap: 15px !important; /* 控制换行后的间距 */
+    }
+    
+    /* 2.2 确保每个流程元素（框和运算符）在换行布局中占满可用宽度，保持可读性 */
+    .flowchart-row .flow-box,
+    .flowchart-row .operator {
+        flex: 1 1 auto !important; /* 允许伸缩，不固定宽度 */
+        min-width: 60px !important; /* 设置一个最小宽度，防止过小 */
+        max-width: 120px !important; /* 设置一个最大宽度，防止在竖屏一行内过多元素 */
+        margin: 5px !important; /* 换行后各元素之间的间隔 */
+        text-align: center;
+    }
+    
+    /* 2.3 可选：如果你希望运算符在竖屏时旋转，以表示垂直流程，可以取消下面这行注释 */
+    /* .operator { transform: rotate(90deg); } */
+    
+    /* 2.4 提高运算符的字体大小，在竖屏小屏幕上更清晰 */
+    .operator {
+        font-size: 20px !important;
+        padding: 8px 12px !important;
+    }
+}
